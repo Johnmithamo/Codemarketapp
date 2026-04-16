@@ -73,11 +73,11 @@ export default function BuyerAccountCreation() {
         },
         body: JSON.stringify(payload),
       });
-
+      navigate("/home");
       if (!response.ok) throw new Error("Failed to save profile");
 
       alert("Profile Submitted!");
-      navigate("/home");
+      
     } catch (err) {
       console.error(err);
       alert("Error submitting profile: " + err.message);
