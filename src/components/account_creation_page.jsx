@@ -103,6 +103,7 @@ export default function AccountCreation() {
     );
 
     const data = await response.json();
+    navigate("/home");
 
     if (!response.ok) {
         console.error("SERVER ERROR:", data);
@@ -111,7 +112,7 @@ export default function AccountCreation() {
     const result = await response.json();
     console.log("Profile updated:", result);
     alert("Profile Submitted!");
-    navigate("/home");
+    
   } catch (err) {
     console.error(err);
     alert("Error submitting profile: " + err.message);
