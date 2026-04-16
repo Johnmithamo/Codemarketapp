@@ -302,7 +302,6 @@ const navigate = useNavigate();
                                     </span>
                                 ))}
                             </div>
-                            <pre>{JSON.stringify(service.id)}</pre>
                             <div
                                 
                                 className="cursor-pointer text-xl"
