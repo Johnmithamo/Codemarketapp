@@ -10,6 +10,7 @@ export default function Register() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   
@@ -28,7 +29,7 @@ export default function Register() {
       setError("All fields are required");
       return;
     }
-
+    setIsLoading(true);
     try {
       const res = await fetch("https://movie-nova-3.onrender.com/signup", {
         method: "POST",
@@ -151,10 +152,21 @@ export default function Register() {
     {success && <p className="text-green-500 mb-4 text-center">{success}</p>}
 
     {/* Register Button */}  
-    <button onClick={handleRegister} className="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition">  
-      Register  
-    </button>  
-
+    <button
+        onClick={handleRegister}
+        disabled={isLoading}
+        className="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2"
+    >
+        {isLoading ? (
+            <>
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Loading...
+                </>
+        ) : (
+        "Login"
+        )}
+    </button>
+    
     {/* Login */}  
     <p className="text-center text-gray-500 mt-6">  
       Already have an account?{" "}  

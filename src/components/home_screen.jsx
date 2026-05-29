@@ -256,7 +256,12 @@ const navigate = useNavigate();
  
         <div className="px-6 mt-6 space-y-5 pb-6">
             {loading ? (
-                <p className="text-center text-gray-500">Loading...</p>
+                <div className="flex justify-center items-center mt-10 gap-2">
+                    <span className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce"></span>
+                    <span className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce delay-150"></span>
+                    <span className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce delay-300"></span>
+                    <span className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce delay-450"></span>
+                </div>
             ) : (
                 services.map((service) => (
                     <div
@@ -302,7 +307,6 @@ const navigate = useNavigate();
                                     </span>
                                 ))}
                             </div>
-                            <pre>{JSON.stringify(service.id)}</pre>
                             <div
                                 
                                 className="cursor-pointer text-xl"

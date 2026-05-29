@@ -14,6 +14,7 @@ import {
 export default function AccountCreation() {
   const [step, setStep] = useState("home");
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -108,7 +109,6 @@ export default function AccountCreation() {
         console.error("SERVER ERROR:", data);
         throw new Error(data.details || data.error || "Failed to save profile");
     }
-    const result = await response.json();
     console.log("Profile updated:", result);
     alert("Profile Submitted!");
     navigate("/home");
@@ -145,7 +145,11 @@ export default function AccountCreation() {
                   <div className="bg-white rounded-full w-full h-full flex items-center justify-center">
                     {formData.photo ? (
                         <img
-                            src={formData.photo}
+                            src={
+                                formData.photo instanceof File
+                                ? URL.createObjectURL(formData.photo)
+                                : formData.photo
+                            }
                             alt="Profile"
                             className="w-full h-full rounded-full object-cover"
                         />
@@ -212,6 +216,9 @@ export default function AccountCreation() {
             title="Basic Information"
             onBack={() => setStep("home")}
             onNext={() => setStep("skills")}
+            setIsLoading={setIsLoading}
+            isLoading={isLoading}
+
           >
             <input
               name="fullName"
@@ -244,6 +251,9 @@ export default function AccountCreation() {
             title="Skills & Expertise"
             onBack={() => setStep("basic")}
             onNext={() => setStep("portfolio")}
+            setIsLoading={setIsLoading}
+            isLoading={isLoading}
+
           >
             <input
               name="skills"
@@ -268,6 +278,9 @@ export default function AccountCreation() {
             title="Portfolio"
             onBack={() => setStep("skills")}
             onNext={() => setStep("photo")}
+            setIsLoading={setIsLoading}
+            isLoading={isLoading}
+
           >
             <input
               name="portfolio"
@@ -286,6 +299,9 @@ export default function AccountCreation() {
             onBack={() => setStep("portfolio")}
             onNext={handleSubmit}
             isLast
+            setIsLoading={setIsLoading}
+            isLoading={isLoading}
+
           >
             <label className="flex flex-col items-center justify-center border-2 border-dashed border-blue-400 rounded-2xl p-8 cursor-pointer hover:bg-blue-50 transition">
 
@@ -339,6 +355,8 @@ function FormSection({
   onBack,
   onNext,
   isLast = false,
+  setIsLoading,
+  isLoading,
 }) {
   return (
     <div className="space-y-5">
@@ -355,16 +373,28 @@ function FormSection({
         >
           Back
         </button>
-
         <button
-          onClick={onNext}
-          className={`flex-1 py-3 rounded-xl text-white ${
-            isLast
-              ? "bg-green-600"
-              : "bg-blue-600 hover:bg-blue-700"
-          }`}
+            onClick={async () => {
+                setIsLoading(true);
+
+                try {
+                    await onNext();
+                } finally {
+                    setIsLoading(false);
+                }
+            }}
+            disabled={isLoading}
+            className={`flex-1 py-3 rounded-xl text-white flex items-center justify-center ${
+                isLast
+                    ? "bg-green-600"
+                    : "bg-blue-600 hover:bg-blue-700"
+            } ${isLoading ? "opacity-70 cursor-not-allowed" : ""}`}
         >
-          {isLast ? "Finish" : "Next"}
+        {isLoading ? (
+            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+        ) : (
+            isLast ? "Finish" : "Next"
+        )}
         </button>
       </div>
     </div>

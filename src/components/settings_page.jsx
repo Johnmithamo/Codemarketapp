@@ -190,7 +190,13 @@ export default function App() {
       <BackHeader title="Payments" />
 
       {loading ? (
-        <p>Loading payments...</p>
+        <div className="flex gap-2 mt-8">
+          <span className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce"></span>
+          <span className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce delay-150"></span>
+          <span className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce delay-300"></span>
+          <span className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce delay-450"></span>
+        </div>
+
       ) : (
         <div className="bg-white p-4 rounded-xl shadow space-y-3">
           <p><strong>Saved Card:</strong> {paymentsData?.card}</p>

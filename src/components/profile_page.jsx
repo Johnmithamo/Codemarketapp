@@ -218,10 +218,15 @@ const updateService = async (index) => {
     console.error("Update service error:", err);
   }
 };
-
   if (loading)
-    return <p className="text-center mt-10 text-gray-400">Loading services...</p>;
-
+  return (
+    <div className="flex justify-center items-center mt-10 gap-2">
+      <div className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce"></div>
+      <div className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce [animation-delay:150ms]"></div>
+      <div className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce [animation-delay:300ms]"></div>
+      <div className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce [animation-delay:450ms]"></div>
+    </div>
+  );
   return (
     <Page className="flex-1 overflow-y-auto" title="My Services" go={go}>
       {/* Existing services */}

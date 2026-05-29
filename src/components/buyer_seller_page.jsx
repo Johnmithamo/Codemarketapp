@@ -43,8 +43,15 @@ export default function SellerProfile() {
 
   fetchData();
 }, [id]);
-  if (loading) return <p className="text-center mt-10">Loading...</p>;
-
+  if (loading)
+  return (
+    <div className="flex justify-center items-center mt-10 gap-2">
+      <div className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce"></div>
+      <div className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce [animation-delay:150ms]"></div>
+      <div className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce [animation-delay:300ms]"></div>
+      <div className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce [animation-delay:450ms]"></div>
+    </div>
+  );
   return (
     <div className="w-full h-screen flex flex-col bg-gray-100">
 

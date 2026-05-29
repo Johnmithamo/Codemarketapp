@@ -10,6 +10,7 @@ export default function Login() {
 	const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
     const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 	useLockBodyScroll();
 	const navigate = useNavigate();
 	useEffect(() => {
@@ -27,7 +28,7 @@ export default function Login() {
             setError("Email and password required");
             return;
         }
-
+        setIsLoading(true);
         try {
             const res = await fetch("https://movie-nova-3.onrender.com/login", {
                 method: "POST",
@@ -47,9 +48,14 @@ export default function Login() {
             localStorage.setItem("token", data.token);
             localStorage.setItem("role", data.role || "buyer");
             navigate("/home");
+            
         } catch (err) {
             console.error(err);
             setError("Server error or server waking up...");
+        }
+        
+        finally {
+            setIsLoading(false);
         }
     };
 
@@ -111,10 +117,20 @@ export default function Login() {
             {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
 
             {/* Login Button */}
-            <button className="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition" onClick={handleLogin}>
-                Login
+            <button
+                onClick={handleLogin}
+                disabled={isLoading}
+                className="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2"
+            >
+            {isLoading ? (
+            <>
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                Loading...
+            </>
+            ) : (
+                "Login"
+            )}
             </button>
-     
             {/* Divider */}
             <div className="flex items-center my-6">
                 <div className="flex-grow border-t"></div>

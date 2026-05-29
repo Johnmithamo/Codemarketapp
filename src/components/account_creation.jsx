@@ -5,6 +5,7 @@ import { User, ArrowLeft, Upload } from "lucide-react";
 
 export default function BuyerAccountCreation() {
   const [step, setStep] = useState("home");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: "",
@@ -127,10 +128,22 @@ export default function BuyerAccountCreation() {
             </div>
 
             <button
-              onClick={() => setStep("basic")}
-              className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-medium transition"
+                onClick={() => {
+                    setIsLoading(true);
+
+                    setTimeout(() => {
+                        setStep("basic");
+                        setIsLoading(false);
+                    }, 500); // adjust or remove if doing real async work
+                }}
+                disabled={isLoading}
+                className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-medium transition flex items-center justify-center"
             >
-              Continue
+            {isLoading ? (
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            ) : (
+                "Continue"
+            )}
             </button>
           </>
         )}
