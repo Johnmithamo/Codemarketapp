@@ -28,7 +28,7 @@ export default function AccountCreation() {
   const token = localStorage.getItem("token");
   if (!token) return;
 
-  fetch("https://movie-nova-3.onrender.com/profile", {
+  fetch("https://movie-nova-5.onrender.com/profile", {
     headers: { Authorization: `Bearer ${token}` },
   })
     .then(res => res.json())
@@ -92,7 +92,7 @@ export default function AccountCreation() {
     const token = localStorage.getItem("token");
 
     const response = await fetch(
-      "https://movie-nova-3.onrender.com/profile/setup",
+      "https://movie-nova-5.onrender.com/profile/setup",
       {
         method: "POST",
         headers: {
