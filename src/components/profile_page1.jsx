@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { User, Bookmark, Activity, Settings, Star, ArrowLeft, Search, Bell, Moon, Lock, Globe } from "lucide-react";
-const API = "https://movie-nova-3.onrender.com";
+const API = "https://movie-nova-5.onrender.com";
 
 export default function BuyerProfilePage() {
   const [page, setPage] = useState("profile");
