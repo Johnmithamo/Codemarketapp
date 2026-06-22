@@ -44,17 +44,13 @@ export default function Register() {
 
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error || "Registration failed");
-        return;
+          setError(data.error || "Login failed");
+          return;
       }
-      const userRole = data.role || role;
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("role", userRole);
-      if (userRole === "seller") {
-        navigate("/creation");
-      } else {
-        navigate("/creation1");
-      }
+
+      localStorage.setItem("pendingEmail", email);
+      navigate("/verification");
+         
     } catch (err) {
       console.error(err);
       setError("Server error");
