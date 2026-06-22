@@ -25,6 +25,7 @@ function App() {
     <div className="main-layout">
       <Routes>
         {/* Open routes */}
+        <Route path="/verification" element={<VerifyLoginOTP }/> />
         <Route path="/" element={<Splash />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -43,7 +44,6 @@ function App() {
         <Route path="/policy" element={ <Protected> <Policy /> </Protected> }/>
         <Route path="/terms" element={ <Protected> <Terms /> </Protected> }/>
         <Route path="/about" element={ <Protected> <About /> </Protected> }/>
-        <Route path="/verification" element={  <Protected> <VerifyLoginOTP /> </Protected> }/>
       </Routes>
     </div>
   );
