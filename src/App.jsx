@@ -25,7 +25,7 @@ function App() {
     <div className="main-layout">
       <Routes>
         {/* Open routes */}
-        <Route path="/verification" element={<VerifyLoginOTP }/> />
+        <Route path="/verification" element={<VerifyLoginOTP />} />
         <Route path="/" element={<Splash />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
