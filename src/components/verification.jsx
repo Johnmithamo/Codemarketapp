@@ -126,8 +126,7 @@ export default function VerifyLoginOTP() {
           onClick={() => navigate(-1)}
           className="flex items-center text-gray-500 mb-6 hover:text-gray-700"
         >
-          <ArrowLeft size={18} className="mr-2" />
-          Back
+          <ArrowLeft size={36} className="mr-2" />
         </button>
 
         <div className="flex justify-center mb-6">
