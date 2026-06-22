@@ -14,7 +14,7 @@ export default function SellerDashboard() {
   const toggleStatus = async (id) => {
   const service = services.find(s => s.id === id);
   try {
-    await axios.put(`https://movie-nova-3.onrender.com/user/services/${id}`, {
+    await axios.put(`https://movie-nova-5.onrender.com/user/services/${id}`, {
       active: !service.active
     }, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
@@ -31,14 +31,14 @@ export default function SellerDashboard() {
   if (!token) return;
   const headers = { Authorization: `Bearer ${token}` };
   
-  axios.get("https://movie-nova-3.onrender.com/profile", { headers })
+  axios.get("https://movie-nova-5.onrender.com/profile", { headers })
   .then(res => {
     console.log("PROFILE:", res.data); // 🔥 IMPORTANT
     setProfile(res.data.profile);
   })
   .catch(err => console.error("PROFILE ERROR:", err));
   // Fetch services
-  axios.get("https://movie-nova-3.onrender.com/my/services", { headers })
+  axios.get("https://movie-nova-5.onrender.com/my/services", { headers })
   .then(res => setServices(res.data.services.map(s => ({
     id: s._id,
     title: s.title,
@@ -48,21 +48,21 @@ export default function SellerDashboard() {
   }))))
   .catch(err => console.error(err));
   // Fetch orders
-  axios.get("https://movie-nova-3.onrender.com/user/orders", {
+  axios.get("https://movie-nova-5.onrender.com/user/orders", {
     headers: { Authorization: `Bearer ${token}` }
   })
   .then(res => setOrders(res.data))
   .catch(err => console.error(err));
 
   // Fetch transactions
-  axios.get("https://movie-nova-3.onrender.com/user/transactions", {
+  axios.get("https://movie-nova-5.onrender.com/user/transactions", {
     headers: { Authorization: `Bearer ${token}` }
   })
   .then(res => setTransactions(res.data))
   .catch(err => console.error(err));
 
   // Fetch reviews
-  axios.get("https://movie-nova-3.onrender.com/user/reviews", {
+  axios.get("https://movie-nova-5.onrender.com/user/reviews", {
     headers: { Authorization: `Bearer ${token}` }
   })
   .then(res => setReviews(res.data))
