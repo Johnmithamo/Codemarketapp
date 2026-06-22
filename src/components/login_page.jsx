@@ -45,9 +45,8 @@ export default function Login() {
                 return;
             }
 
-            localStorage.setItem("token", data.token);
-            localStorage.setItem("role", data.role || "buyer");
-            navigate("/home");
+            localStorage.setItem("pendingEmail", email);
+            navigate("/verification");
             
         } catch (err) {
             console.error(err);
