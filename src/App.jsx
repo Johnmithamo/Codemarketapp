@@ -18,6 +18,7 @@ import Favorites from "./components/favorite_page";
 import Policy from "./components/privacy_policy"; 
 import Terms from "./components/terms_of_use"; 
 import About from "./components/about"; 
+import VerifyLoginOTP from "./components/verification";
 
 function App() {
   return (
