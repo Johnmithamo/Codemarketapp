@@ -42,6 +42,7 @@ function App() {
         <Route path="/policy" element={ <Protected> <Policy /> </Protected> }/>
         <Route path="/terms" element={ <Protected> <Terms /> </Protected> }/>
         <Route path="/about" element={ <Protected> <About /> </Protected> }/>
+        <Route path="/verification" element={  <Protected> <VerifyLoginOTP /> </Protected> }/>
       </Routes>
     </div>
   );
