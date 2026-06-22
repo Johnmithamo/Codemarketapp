@@ -19,12 +19,14 @@ import Policy from "./components/privacy_policy";
 import Terms from "./components/terms_of_use"; 
 import About from "./components/about"; 
 import VerifyLoginOTP from "./components/verification";
+import VerifySignupOTP from "./components/verify-signup-otp";
 
 function App() {
   return (
     <div className="main-layout">
       <Routes>
         {/* Open routes */}
+        <Route path="/verify-signup-otp" element={<VerifySignupOTP />} />
         <Route path="/verification" element={<VerifyLoginOTP />} />
         <Route path="/" element={<Splash />} />
         <Route path="/login" element={<Login />} />
