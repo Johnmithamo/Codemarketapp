@@ -26,13 +26,13 @@ export default function App() {
   if (!token) return;
 
   if (page === "settings" || page === "profile") {
-    axios.get("https://movie-nova-3.onrender.com/profile",  { headers: { Authorization: `Bearer ${token}` } })
+    axios.get("https://movie-nova-5.onrender.com/profile",  { headers: { Authorization: `Bearer ${token}` } })
       .then(res => setProfileData(res.data.profile))
       .catch(err => console.error(err));
   }
 
   if (page === "notifications") {
-    axios.get("https://movie-nova-3.onrender.com/user/notifications", { headers: { Authorization: `Bearer ${token}` } })
+    axios.get("https://movie-nova-5.onrender.com/user/notifications", { headers: { Authorization: `Bearer ${token}` } })
       .then(res => setNotificationsData(res.data))
       .catch(err => console.error(err));
   }
@@ -40,7 +40,7 @@ export default function App() {
   if (page === "payments") {
   setLoading(true);
 
-  axios.get("https://movie-nova-3.onrender.com/user/payments", {
+  axios.get("https://movie-nova-5.onrender.com/user/payments", {
     headers: { Authorization: `Bearer ${token}` }
   })
   .then(res => setPaymentsData(res.data))
@@ -49,13 +49,13 @@ export default function App() {
   }
 
   if (page === "privacy") {
-    axios.get("https://movie-nova-3.onrender.com/user/privacy", { headers: { Authorization: `Bearer ${token}` } })
+    axios.get("https://movie-nova-5.onrender.com/user/privacy", { headers: { Authorization: `Bearer ${token}` } })
       .then(res => setPrivacyData(res.data))
       .catch(err => console.error(err));
   }
 
   if (page === "help") {
-    axios.get("https://movie-nova-3.onrender.com/help/faq", { headers: { Authorization: `Bearer ${token}` } })
+    axios.get("https://movie-nova-5.onrender.com/help/faq", { headers: { Authorization: `Bearer ${token}` } })
       .then(res => setHelpData({ faq: res.data }))
       .catch(err => console.error(err));
   }
