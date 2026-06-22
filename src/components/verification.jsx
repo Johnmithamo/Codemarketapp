@@ -159,7 +159,7 @@ export default function VerifyLoginOTP() {
                 handleChange(e.target.value, index)
               }
               onKeyDown={(e) => handleKeyDown(e, index)}
-              className="w-7 h-8 border-2 rounded-xl text-center text-2xl font-bold focus:outline-none focus:border-blue-600"
+              className="w-15 h-16 border-2 rounded-xl text-center text-2xl font-bold focus:outline-none focus:border-blue-600"
             />
           ))}
         </div>
