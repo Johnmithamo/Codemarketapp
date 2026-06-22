@@ -44,13 +44,22 @@ export default function Register() {
 
       const data = await res.json();
       if (!res.ok) {
-          setError(data.error || "Login failed");
+          setError(data.error || "Registration failed");
           return;
-      }
+     }
+     localStorage.setItem("pendingEmail", email);
 
-      localStorage.setItem("pendingEmail", email);
-      navigate("/verification");
-         
+     localStorage.setItem(
+         "pendingSignup",
+          JSON.stringify({
+              username,
+              email,
+              password,
+              role
+          })
+     );
+
+     navigate("/verify-signup-otp");       
     } catch (err) {
       console.error(err);
       setError("Server error");
