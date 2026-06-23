@@ -26,45 +26,58 @@ export default function Register() {
     setSuccess("");
 
     if (!fullName || !email || !password) {
-      setError("All fields are required");
-      return;
+        setError("All fields are required");
+        return;
     }
+
     setIsLoading(true);
+
     try {
-      const res = await fetch("https://movie-nova-5.onrender.com/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username: fullName,
-          email,
-          password,
-          role
-        }),
-      });
+        const res = await fetch(
+            "https://movie-nova-5.onrender.com/signup",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: fullName,
+                    email,
+                    password,
+                    role,
+                }),
+            }
+        );
 
-      const data = await res.json();
-      if (!res.ok) {
-          setError(data.error || "Registration failed");
-          return;
-     }
-     localStorage.setItem("pendingEmail", email);
+        const data = await res.json();
 
-     localStorage.setItem(
-         "pendingSignup",
-          JSON.stringify({
-              username,
-              email,
-              password,
-              role
-          })
-     );
+        if (!res.ok) {
+            setError(data.error || "Registration failed");
+            return;
+        }
 
-     navigate("/verify-signup-otp");       
+        localStorage.setItem("pendingEmail", email);
+
+        localStorage.setItem(
+            "pendingSignup",
+            JSON.stringify({
+                username: fullName,
+                email,
+                password,
+                role,
+            })
+        );
+
+        navigate("/verify-signup-otp");
+
     } catch (err) {
-      console.error(err);
-      setError("Server error");
+        console.error(err);
+        setError("Server error");
+    } finally {
+        setIsLoading(false);
     }
-  };
+};
+
   return (
     <div className="min-h-screen w-full bg-gray-100 flex items-center justify-center">
 
@@ -168,7 +181,7 @@ export default function Register() {
                     Loading...
                 </>
         ) : (
-        "Login"
+        "Register"
         )}
     </button>
     
