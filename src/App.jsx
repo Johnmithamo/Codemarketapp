@@ -20,6 +20,7 @@ import Terms from "./components/terms_of_use";
 import About from "./components/about"; 
 import VerifyLoginOTP from "./components/verification";
 import VerifySignupOTP from "./components/verify-signup-otp";
+import VerifyResetOTP from "./components/verify-reset-otp";
 
 function App() {
   return (
@@ -29,13 +30,14 @@ function App() {
         <Route path="/verify-signup-otp" element={<VerifySignupOTP />} />
         <Route path="/verification" element={<VerifyLoginOTP />} />
         <Route path="/" element={<Splash />} />
+        <Route path="/verify-reset-otp" element={<VerifyResetOTP />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/otp" element={<OtpPage />} />
         <Route path="/register" element={<Register />} />
         {/* Protected routes */}
         <Route path="/home" element={ <Protected> <Navbar /> </Protected> }/>
         <Route path="/home_screen" element={ <Protected> <Home /> </Protected> }/>
         <Route path="/settings" element={ <Protected> <Settings /> </Protected> }/>
-        <Route path="/otp" element={ <Protected> <OtpPage /> </Protected> }/>
         <Route path="/creation" element={ <Protected> <Account /> </Protected> }/>
         <Route path="/buyer/:id" element={ <Protected> <Buyer /> </Protected> }/>
         <Route path="/seller" element={ <Protected> <Seller /> </Protected> }/>
