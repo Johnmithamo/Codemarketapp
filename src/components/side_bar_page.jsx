@@ -41,8 +41,8 @@ export default function SideNav({ isOpen, onClose }) {
       label: "Profile",
       icon: <User size={20} className="text-pink-500" />,
       path: role === "seller"
-        ? "/seller-profile"
-        : "/buyer-profile",
+        ? "/creation"
+        : "/creation1",
     },
     {
       label: "About",
